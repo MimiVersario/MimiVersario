@@ -12,6 +12,8 @@
 </head>
 <body>
 
+    <div class="falling-particles"></div>
+
     <main class="container">
 
         <section class="abertura">
@@ -46,6 +48,7 @@
     </div>
 
     <script>
+        // Script do Botão
         const modal = document.getElementById('modal-amor');
         const botao = document.getElementById('botao-amor');
         const spanFechar = document.querySelector('.fechar-modal');
@@ -62,6 +65,21 @@
             if (event.target == modal) {
                 modal.style.display = "none";
             }
+        }
+        
+        // Script para criar as partículas caindo
+        const particleContainer = document.querySelector('.falling-particles');
+        const particles = ['❤️', '💜']; // Coração rosa e violeta roxa (usando emojis)
+        const numParticles = 30; // Você pode aumentar ou diminuir este número
+
+        for (let i = 0; i < numParticles; i++) {
+            let particle = document.createElement('span');
+            particle.classList.add('particle');
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = Math.random() * 5 + 5 + 's'; // Duração entre 5 e 10 segundos
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+            particleContainer.appendChild(particle);
         }
     </script>
 
