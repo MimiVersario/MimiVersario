@@ -1,0 +1,152 @@
+/* Paleta de Cores e Fontes */
+:root {
+    --cor-fundo: #FFF5F7; 
+    --cor-texto: #5B4B4E; 
+    --cor-destaque: #E57373; 
+    --fonte-titulo: 'Dancing Script', cursive;
+    --fonte-corpo: 'Lato', sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--fonte-corpo);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+section {
+    padding: 40px 20px;
+    border-bottom: 1px solid #FFDDE2;
+}
+
+section:last-child {
+    border-bottom: none;
+}
+
+h1, h2 {
+    font-family: var(--fonte-titulo);
+    font-size: 3.5em;
+    color: var(--cor-destaque);
+    margin-top: 0;
+}
+
+.imagem-principal {
+    max-width: 80%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mensagem p {
+    font-size: 1.2em;
+    line-height: 1.8;
+    text-align: left;
+}
+
+.mensagem p + p {
+    margin-top: 1.5em;
+}
+
+.imagem-decorativa {
+    max-width: 100px;
+    margin-bottom: 20px;
+}
+
+.fechamento p {
+    font-family: var(--fonte-titulo);
+    font-size: 2.2em;
+    color: var(--cor-destaque);
+    margin: 0;
+}
+
+.imagem-decorativa-rodape {
+    max-width: 80px;
+    margin-top: 15px;
+}
+
+/* --- ESTILOS DO BOTÃO E MENSAGEM SURPRESA --- */
+
+#botao-amor {
+    font-family: var(--fonte-corpo);
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+    background-color: var(--cor-destaque);
+    border: none;
+    border-radius: 25px;
+    padding: 12px 25px;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#botao-amor:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.modal-overlay {
+    display: none; 
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-conteudo {
+    background-color: var(--cor-fundo);
+    padding: 40px;
+    border: 2px solid var(--cor-destaque);
+    border-radius: 15px;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    animation: aparecer 0.5s;
+}
+
+.modal-conteudo p {
+    font-family: var(--fonte-titulo);
+    font-size: 2.8em;
+    color: var(--cor-destaque);
+    margin: 0;
+}
+
+.fechar-modal {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.fechar-modal:hover,
+.fechar-modal:focus {
+    color: var(--cor-texto);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes aparecer {
+    from {transform: scale(0.5); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}

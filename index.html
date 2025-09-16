@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Mimisário!</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main class="container">
+
+        <section class="abertura">
+            <h1>Feliz Mimisário!</h1>
+            <img src="images/patinhos.jpg" alt="Meme dos Patinhos" class="imagem-principal">
+        </section>
+
+        <section class="mensagem">
+            <img src="images/kuromi.png" alt="Kuromi" class="imagem-decorativa">
+            <p>
+                Feliz aniversário meu amor! Quero agradecer por ser essa pessoa incrível, você é extremamente especial pra mim, obrigado por tudo que fez e faz por mim, por ser essa mulher carinhosa, engraçada, inteligente e determinada.
+            </p>
+            <p>
+                Espero que nós tenhamos muito tempo juntos pela frente, que eu tenha a honra de ter você na minha vida alegrando todos os dias, te amo muuuuito &lt;3
+            </p>
+            <img src="images/mymelody.png" alt="My Melody" class="imagem-decorativa">
+        </section>
+        
+        <section class="fechamento">
+            <p>Com todo o meu amor, patinho gatinho</p>
+            <img src="images/hellokitty.png" alt="Hello Kitty" class="imagem-decorativa-rodape">
+            <button id="botao-amor">Uma mensagem especial</button>
+        </section>
+
+    </main>
+
+    <div id="modal-amor" class="modal-overlay">
+        <div class="modal-conteudo">
+            <span class="fechar-modal">&times;</span>
+            <p>Te amo patodavida</p>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('modal-amor');
+        const botao = document.getElementById('botao-amor');
+        const spanFechar = document.querySelector('.fechar-modal');
+
+        botao.onclick = function() {
+            modal.style.display = "flex";
+        }
+
+        spanFechar.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
