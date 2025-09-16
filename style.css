@@ -154,7 +154,7 @@ h1, h2 {
 /* --- ANIMAÇÃO DE PARTÍCULAS CAINDO --- */
 
 .falling-particles {
-    position: fixed;
+    position: fixed; /* Fixa o container na tela inteira */
     top: 0;
     left: 0;
     width: 100%;
@@ -164,17 +164,19 @@ h1, h2 {
 }
 
 .particle {
-    position: absolute;
-    top: -20px; /* Começa fora da tela, em cima */
+    position: absolute; /* ESSENCIAL: Permite que cada partícula se mova de forma independente */
+    top: -20px; /* Faz começar fora da tela, em cima */
     font-size: 1.5em;
     opacity: 0.7;
+    /* Aplica a animação 'fall', que definimos abaixo */
     animation: fall linear infinite;
 }
 
-/* Animação de queda */
+/* Define o movimento de queda */
 @keyframes fall {
     to {
-        transform: translateY(105vh); /* Cai até passar da parte de baixo da tela */
+        /* Move a partícula até passar da parte de baixo da tela e a torna invisível */
+        transform: translateY(105vh);
         opacity: 0;
     }
 }
