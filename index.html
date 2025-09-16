@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz Mimisário!</title>
+    <title>Uma surpresa especial...</title>
     <link rel="stylesheet" href="style.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,76 +12,106 @@
 </head>
 <body>
 
-    <div class="falling-particles"></div>
+    <div id="pre-aniversario">
+        <div class="container-contador">
+            <h2>Contagem regressiva para uma surpresa...</h2>
+            <img src="images/espera.gif" alt="Esperando a surpresa" class="gif-espera">
+            <div id="contador">
+                <div><span id="dias">00</span><span>Dias</span></div>
+                <div><span id="horas">00</span><span>Horas</span></div>
+                <div><span id="minutos">00</span><span>Minutos</span></div>
+                <div><span id="segundos">00</span><span>Segundos</span></div>
+            </div>
+        </div>
+    </div>
 
-    <main class="container">
+    <div id="conteudo-principal" style="display:none;">
+        <div class="falling-particles"></div>
+        <main class="container">
+            <section class="abertura">
+                <h1>Feliz Mimisário!</h1>
+                <img src="images/patinhos.jpg" alt="Meme dos Patinhos" class="imagem-principal">
+            </section>
 
-        <section class="abertura">
-            <h1>Feliz Mimisário!</h1>
-            <img src="images/patinhos.jpg" alt="Meme dos Patinhos" class="imagem-principal">
-        </section>
+            <section class="mensagem">
+                <img src="images/kuromi.png" alt="Kuromi" class="imagem-decorativa">
+                <p>
+                    Feliz aniversário meu amor! Quero agradecer por ser essa pessoa incrível, você é extremamente especial pra mim, obrigado por tudo que fez e faz por mim, por ser essa mulher carinhosa, engraçada, inteligente e determinada.
+                </p>
+                <p>
+                    Espero que nós tenhamos muito tempo juntos pela frente, que eu tenha a honra de ter você na minha vida alegrando todos os dias, te amo muuuuito &lt;3
+                </p>
+                <img src="images/mymelody.png" alt="My Melody" class="imagem-decorativa">
+            </section>
 
-        <section class="mensagem">
-            <img src="images/kuromi.png" alt="Kuromi" class="imagem-decorativa">
-            <p>
-                Feliz aniversário meu amor! Quero agradecer por ser essa pessoa incrível, você é extremamente especial pra mim, obrigado por tudo que fez e faz por mim, por ser essa mulher carinhosa, engraçada, inteligente e determinada.
-            </p>
-            <p>
-                Espero que nós tenhamos muito tempo juntos pela frente, que eu tenha a honra de ter você na minha vida alegrando todos os dias, te amo muuuuito &lt;3
-            </p>
-            <img src="images/mymelody.png" alt="My Melody" class="imagem-decorativa">
-        </section>
-        
-        <section class="fechamento">
-            <p>Com todo o meu amor, patinho gatinho</p>
-            <img src="images/hellokitty.png" alt="Hello Kitty" class="imagem-decorativa-rodape">
-            <button id="botao-amor">Uma mensagem especial</button>
-        </section>
+            <section class="playlist-container">
+                <h2>Nossa Playlist</h2>
+                </section>
+            
+            <section class="fechamento">
+                <p>Com todo o meu amor, patinho gatinho</p>
+                <img src="images/hellokitty.png" alt="Hello Kitty" class="imagem-decorativa-rodape">
+                <button id="botao-amor">Uma mensagem especial</button>
+            </section>
+        </main>
 
-    </main>
-
-    <div id="modal-amor" class="modal-overlay">
-        <div class="modal-conteudo">
-            <span class="fechar-modal">&times;</span>
-            <p>Te amo patodavida</p>
+        <div id="modal-amor" class="modal-overlay">
+            <div class="modal-conteudo">
+                <span class="fechar-modal">&times;</span>
+                <p>Te amo patodavida</p>
+            </div>
         </div>
     </div>
 
     <script>
-        // Script do Botão
+        // --- CONFIGURAÇÃO DA DATA DO ANIVERSÁRIO ---
+        const dataAniversario = new Date("2025-10-03T00:00:00").getTime();
+
+        const intervalo = setInterval(function() {
+            const agora = new Date().getTime();
+            const diferenca = dataAniversario - agora;
+
+            if (diferenca < 0) {
+                // ANIVERSÁRIO CHEGOU!
+                clearInterval(intervalo);
+                document.getElementById("pre-aniversario").style.display = "none";
+                document.getElementById("conteudo-principal").style.display = "block";
+                
+                const particleContainer = document.querySelector('.falling-particles');
+                const particles = ['❤️', '💜'];
+                const numParticles = 30;
+                for (let i = 0; i < numParticles; i++) {
+                    let particle = document.createElement('span');
+                    particle.classList.add('particle');
+                    particle.style.left = Math.random() * 100 + 'vw';
+                    particle.style.animationDuration = Math.random() * 5 + 5 + 's';
+                    particle.style.animationDelay = Math.random() * 5 + 's';
+                    particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+                    particleContainer.appendChild(particle);
+                }
+
+            } else {
+                // AINDA NA CONTAGEM REGRESSIVA
+                const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+
+                document.getElementById("dias").innerText = dias.toString().padStart(2, '0');
+                document.getElementById("horas").innerText = horas.toString().padStart(2, '0');
+                document.getElementById("minutos").innerText = minutos.toString().padStart(2, '0');
+                document.getElementById("segundos").innerText = segundos.toString().padStart(2, '0');
+            }
+        }, 1000);
+
         const modal = document.getElementById('modal-amor');
         const botao = document.getElementById('botao-amor');
         const spanFechar = document.querySelector('.fechar-modal');
-
-        botao.onclick = function() {
-            modal.style.display = "flex";
-        }
-
-        spanFechar.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-        
-        // Script para criar as partículas caindo
-        const particleContainer = document.querySelector('.falling-particles');
-        const particles = ['❤️', '💜']; // Coração rosa e violeta roxa (usando emojis)
-        const numParticles = 30; // Você pode aumentar ou diminuir este número
-
-        for (let i = 0; i < numParticles; i++) {
-            let particle = document.createElement('span');
-            particle.classList.add('particle');
-            particle.style.left = Math.random() * 100 + 'vw';
-            particle.style.animationDuration = Math.random() * 5 + 5 + 's'; // Duração entre 5 e 10 segundos
-            particle.style.animationDelay = Math.random() * 5 + 's';
-            particle.textContent = particles[Math.floor(Math.random() * particles.length)];
-            particleContainer.appendChild(particle);
+        if (botao) {
+            botao.onclick = function() { modal.style.display = "flex"; }
+            spanFechar.onclick = function() { modal.style.display = "none"; }
+            window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; } }
         }
     </script>
-
 </body>
 </html>
